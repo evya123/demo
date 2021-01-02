@@ -13,7 +13,7 @@ pipeline {
   stages {
     stage('demo'){
       steps {
-        sh "hello world"
+        sh "ansible-playbook deploy.yaml"
       }
     }
   }
