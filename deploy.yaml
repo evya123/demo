@@ -2,11 +2,12 @@
   become: true
   gather_facts: yes
   tasks:
-    - name: deploy chart
-      config:
+    - name: config
+      k8s:
         definition: '{{ item }}'
         kubeconfig: '~/.kube/config'
         state: present
+    - name: deploy
       k8s:
         definition: "{{ lookup('template', 'helm_chart.yaml') }}"
         force: yes
