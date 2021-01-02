@@ -1,0 +1,9 @@
+- hosts: "{{ host }}"
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: deploy chart
+      k8s:
+        definition: "{{ lookup('template', 'helm_chart.yaml') }}"
+        force: yes
+        state: present
