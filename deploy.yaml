@@ -1,6 +1,10 @@
 - hosts: localhost
   become: true
   gather_facts: yes
+  vars_files: 
+    - vars/main.yaml 
+  collections:
+    - community.kubernetes 
   tasks:
     - name: config
       k8s:
