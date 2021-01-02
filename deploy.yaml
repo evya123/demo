@@ -6,13 +6,17 @@
   collections:
     - community.kubernetes 
   tasks:
-    - name: config
-      k8s:
-        definition: '{{ item }}'
-        kubeconfig: '~/.kube/config'
-        state: present
-    - name: deploy
-      k8s:
-        definition: "{{ lookup('template', 'helm_chart.yaml') }}"
-        force: yes
-        state: present
+      - name: Get a list of all Services in the myapp namespace.
+        community.kubernetes.k8s_info:
+          kind: Service
+          namespace: jenkins
+#     - name: config
+#       k8s:
+#         definition: '{{ item }}'
+#         kubeconfig: '~/.kube/config'
+#         state: present
+#     - name: deploy
+#       k8s:
+#         definition: "{{ lookup('template', 'helm_chart.yaml') }}"
+#         force: yes
+#         state: present
