@@ -1,12 +1,4 @@
-- hosts: localhost
-  become: true
-  gather_facts: yes
-  vars_files: 
-    - vars/main.yaml 
-  collections:
-    - community.kubernetes 
-  tasks:
-      - name: >-
-      community.kubernetes.k8s:
-        state: present
-        definition: "{{ lookup('file', 'deploy.yaml') | from_yaml }}"
+- name: >-
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('file', 'deploy.yaml') | from_yaml }}"
