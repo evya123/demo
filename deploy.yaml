@@ -1,4 +1,15 @@
-- name: >-
-  community.kubernetes.k8s:
-    state: present
-    definition: "{{ lookup('file', 'deploy.yaml') | from_yaml }}"
+---
+- hosts: localhost
+  gather_facts: false
+  connection: local
+
+  collections:
+    - community.kubernetes
+
+  tasks:
+    - name: Ensure the myapp Namespace exists.
+      k8s:
+        api_version: v1
+        kind: Namespace
+        name: jenkins
+        state: present
