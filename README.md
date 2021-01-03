@@ -87,7 +87,8 @@ In order for you to connecto to the container you need to run this command or as
 export CONTAINER_PORT=$(kubectl get pod --namespace jenkins $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
 export POD_NAME=$(kubectl get pods --namespace jenkins -l "app.kubernetes.io/name=helloworld-chart,app.kubernetes.io/instance=helloworld-chart" -o jsonpath="{.items[0].metadata.name}")
 kubectl --namespace jenkins port-forward $POD_NAME 8080:$CONTAINER_PORT
-connect to localhost:8080```
+connect to localhost:8080
+```
 
 
 ## For EFK using helm
