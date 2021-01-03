@@ -11,7 +11,7 @@
 Now we have a k8s cluster running on aws with vpc.
 Now we need to set kubectl context so we can connect to k8s cluster.
 Using aws cli: ```aws --profile <profile_name> eks --region us-east-1 update-kubeconfig --name terraform-eks-demo```
-
+** I chose to use helm instead of ansible but provided the files for ansible to run **
 To deploy jenkins on the cluster, need to install helm (helm v3 does not need init):
 1. Create jenkins namespaces.
 2. run the kustomization.yaml file to create ServiceAccount, ClutserRole and ClusterRoleBinding for jenkins.
