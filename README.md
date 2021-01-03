@@ -76,3 +76,18 @@ spec:
  maxReplicas: 5
  targetCPUUtilizationPercentage: 85
  ```
+
+ If the autoscale doesn't scale fast enough I would suggest couple of options:
+ 1. Use service like spotinst that can predict the changes using model prediction.
+ 2. Change/modify the metric we use to check if autoscale is needed (for example lower cpu load threshold)
+ 3. Change the elb algorithem from round-robin to more advenced algorithem so we send traffic to the best available instance (best can be interpeted in several ways)
+
+## For EFK using helm
+1. run for example (or using yaml file):
+```
+helm install --name Kibana elastic/kibana --set elasticsearchHosts="http://elasticsearch-master:9200" --set elasticsearchURL="http://elasticsearch-master:9200"
+```
+2. Install Logstash plugin (already provided in values.yaml) and configure in jenkins
+
+For Cloudfront distribution we need to set an ingress with backend so we can direct the path to the static html.
+Also need to create s3 and right sg using TF so we can reach the bucket.
