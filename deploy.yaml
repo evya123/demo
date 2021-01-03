@@ -1,35 +1,10 @@
 ---
-- hosts: all
-  gather_facts: true
-  collections:
-    - community.kubernetes
+- hosts: "{{ host }}"
+  become: true
+  gather_facts: yes
   tasks:
-    - name: Ensure the myapp Namespace exists.
+    - name: deploy chart on cluster
       k8s:
-        api_version: v1
-        kind: Namespace
-        name: jenkins
+        definition: "{{ lookup('template', 'values.yaml') }}"
+        force: yes
         state: present
-    - name: Create a Deployment for helloworld.
-      k8s:
-        state: present
-        definition:
-          apiVersion: apps/v1
-          kind: Deployment
-          metadata:
-            name: helloworld
-            namespace: default
-          spec:
-            replicas: 1
-            selector:
-              matchLabels:
-                app: helloworld
-            template:
-              metadata:
-                labels:
-                  app: helloworld
-              spec:
-                containers:
-                - name: helloworld
-                  image: "760370564012.dkr.ecr.us-east-1.amazonaws.com/hello-world-helm"
-                  imagePullPolicy: IfNotPresent
