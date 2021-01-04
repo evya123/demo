@@ -19,7 +19,8 @@ To deploy jenkins on the cluster, need to install helm (helm v3 does not need in
 ```helm install jenkins -n jenkins -f <path to jenkins-values.yaml> jenkins/jenkins```
 Now we have jenkins running on k8s cluster and we can deploy the chart using pipeline.
 **Please notice that I already added plugins to jenkins**.
-Now after we configured k8s plugin and aws credentials we can deploy the chart with helm.
+
+Now after we configured k8s plugin and aws credentials we can deploy using EKS and ECS.
 
 ### PIPELINE EXAMPLE
 
