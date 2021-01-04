@@ -2,6 +2,7 @@
 USER=${ARANGODB_USERNAME:-arango}
 PASS=${ARANGODB_PASSWORD:-$(pwgen -s -1 16)}
 DB=${ARANGODB_DBNAME:-}
+ARANGOIMP="/usr/bin/arangoimp"
 
 # Start ArangoDB service
 /usr/sbin/arangod --configuration /etc/arangodb/arangod.conf --pid-file /var/run/arangodb/arangod.pid &
@@ -16,6 +17,8 @@ if [ ! -z "$DB" ]; then
     echo "Creating database: \"$DB\"..."
     echo "db._createDatabase(\"$DB\"); db._useDatabase(\"$DB\"); require(\"org/arangodb/users\").save(\"$USER\", \"$PASS\")" | /usr/bin/arangosh
 fi
+## Create demo collection
+$ARANGOIMP --server.password "$PASS" --file demo.json --collection=famous_directors --create-collection=true --type=json || exit 1
 
 # Stop ArangoDB service
 pid=$(cat /var/run/arangodb/arangod.pid)
