@@ -21,8 +21,8 @@ Now we have jenkins running on k8s cluster and we can deploy the chart using pip
 **Please notice that I already added plugins to jenkins**
 Now after we configured k8s plugin and aws credentials we can deploy the chart with helm.
 
-Create new pipeline in jenkins or connect to repository to pull jenkinsfile from github.
-I chose to use amz2 as agent image base, but you can change to any image and install the right dep.
+### PIPELINE EXAMPLE
+
 ```
 pipeline {
     agent {
@@ -76,15 +76,6 @@ spec:
  maxReplicas: 5
  targetCPUUtilizationPercentage: 85
  ```
-
-
-In order for you to connecto to the container you need to run this command or assign the right sg with the public subnet
-```
-export CONTAINER_PORT=$(kubectl get pod --namespace jenkins $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
-export POD_NAME=$(kubectl get pods --namespace jenkins -l "app.kubernetes.io/name=helloworld-chart,app.kubernetes.io/instance=helloworld-chart" -o jsonpath="{.items[0].metadata.name}")
-kubectl --namespace jenkins port-forward $POD_NAME 8080:$CONTAINER_PORT
-connect to localhost:8080
-```
 
 
 ## For ARANGODB we will deploy it on the k8s cluster using jenkins.
