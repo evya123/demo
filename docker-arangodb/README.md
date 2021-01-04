@@ -42,7 +42,7 @@ $ docker run -d \
     -p 8529:8529 \
     -e ARANGODB_USERNAME=myusername \
     -e ARANGODB_PASSWORD=mypassword \
-    frodenas/arangodb
+    <name_tag>
 ```
 
 #### Databases
@@ -60,7 +60,7 @@ $ docker run -d \
     -e ARANGODB_USERNAME=myusername \
     -e ARANGODB_PASSWORD=mypassword \
     -e ARANGODB_DBNAME=mydb \
-    frodenas/arangodb
+    <name_tag>
 ```
 
 #### Persistent data
@@ -74,7 +74,7 @@ $ docker run -d \
     --name arangodb \
     -p 8529:8529 \
     -v /tmp/arangodb:/data \
-    frodenas/arangodb
+    <name_tag>
 ```
 
 There are also additional volumes at:
