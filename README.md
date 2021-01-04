@@ -77,10 +77,6 @@ spec:
  targetCPUUtilizationPercentage: 85
  ```
 
- If the autoscale doesn't scale fast enough I would suggest couple of options:
- 1. Use service like spotinst that can predict the changes using model prediction.
- 2. Change/modify the metric we use to check if autoscale is needed (for example lower cpu load threshold)
- 3. Change the elb algorithem from round-robin to more advenced algorithem so we send traffic to the best available instance (best can be interpeted in several ways)
 
 In order for you to connecto to the container you need to run this command or assign the right sg with the public subnet
 ```
