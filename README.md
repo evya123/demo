@@ -91,12 +91,4 @@ connect to localhost:8080
 ```
 
 
-## For EFK using helm
-1. run for example (or using yaml file):
-```
-helm install --name Kibana elastic/kibana --set elasticsearchHosts="http://elasticsearch-master:9200" --set elasticsearchURL="http://elasticsearch-master:9200"
-```
-2. Install Logstash plugin (already provided in values.yaml) and configure in jenkins
-
-For Cloudfront distribution we need to set an ingress with backend so we can direct the path to the static html.
-Also need to create s3 and right sg using TF so we can reach the bucket.
+## For ARANGODB we will deploy it on the k8s cluster using jenkins.
